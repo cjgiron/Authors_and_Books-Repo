@@ -5,22 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/authors.css' %}">
+    <title>Authors</title>
 </head>
 <body>
     <div class="container">
         <div class="form">
-            <form action="/process_book" method="POST">
+            <form action="/process_author" method="POST">
                 {% csrf_token %}
-                <h1>Add a Book</h1>
+                <h1>Add an Author</h1>
                 <p>
-                    Title:
-                    <input type="text" name="book_title">
+                    First Name:
+                    <input type="text" name="author_first_name">
                 </p>
                 <p>
-                    Description:<br/>
-                    <textarea name="book_description" id="" cols="30" rows="10"></textarea>
+                    Last Name:
+                    <input type="text" name="author_last_name">
+                </p>
+                <p>
+                    Notes:<br/>
+                    <textarea name="author_notes" id="" cols="30" rows="10"></textarea>
                 </p>
                 <button type="submit">Add</button>
             </form>
@@ -30,16 +34,16 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Title</th>
+                        <th>Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for book in all_books %}
+                    {% for author in all_authors %}
                     <tr>
-                        <td>{{ book.id }}</td>
-                        <td>{{ book.title }}</td>
-                        <td><a href="/books/{{ book.id }}/display">View</a> | <a href="/books/{{ book.id }}/delete">Delete</a></td>
+                        <td>{{ author.id }}</td>
+                        <td>{{ author.first_name }} {{ author.last_name }}</td>
+                        <td><a href="/authors/{{ author.id }}/display">View</a> | <a href="/authors/{{ author.id }}/delete">Delete</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
